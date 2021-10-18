@@ -1,0 +1,4 @@
+#!/bin/bash
+cobp_pid=`ps aux | grep node | grep -v grep | awk '{print $2}'`;if [ "$cobp_pid" != "" ]; then `kill -9 $cobp_pid`; fi
+cd <%= node['COBP_FE-Central']['COBP-APP-BUILD-DIR'] %>
+nohup node server.js > /var/tellme/cobp/logs/console.log 2>&1 &

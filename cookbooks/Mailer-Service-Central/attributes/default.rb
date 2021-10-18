@@ -1,0 +1,5 @@
+default['Mailer-Service-Central']['Tellme-HOME'] = "/var/tellme"
+default['Mailer-Service-Central']['Mailer-HOME'] = "/var/tellme/central-mailer"
+default['Mailer-Service-Central']['Mailer-BIN-DIR'] = "#{node['Mailer-Service-Central']['Mailer-HOME']}/bin"
+default['Mailer-Service-Central']['Mailer-ZIP-URL'] = "http://nexus.cicd.sv2.247-inc.net/nexus/repository/prod/com/tfsc/ilabs/centralMailer/promoted/centralMailer-promoted.tgz"
+default['Mailer-Service-Central']['Mailer-ZIP'] = "centralMailer-promoted.tgz"

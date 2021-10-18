@@ -1,0 +1,12 @@
+{
+  "name": "qa-assist24.app.shared.int.sv2.247-inc.net",
+  "chef_environment": "assistqacore3",
+  "run_list": [
+    
+  ],
+  "normal": {
+    "tags": [
+
+    ]
+  }
+}

@@ -1,0 +1,14 @@
+# Define Jetty servers
+jetty.servers=ohs
+
+# Define server specific configurations
+ohs.jetty.home=<%= @jettyHome%>
+
+#The location for the webapps
+ohs.jetty.webapps.home=<%= @jettyHome%>
+
+ohs.jetty.port=<%= @jettyPort%>
+
+ohs.jetty.xml.0=etc/jetty.xml
+ohs.jetty.xml.1=etc/jetty-deploy.xml
+ohs.jetty.xml.2=etc/jetty-webapps.xml

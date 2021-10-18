@@ -1,0 +1,12 @@
+#!/bin/bash
+ps -ef | grep "/var/tellme/css/" | grep -v "grep"
+returnCode=$?
+if [ ${returnCode} -eq 0 ]
+then
+        echo "CSS is running"
+        exitCode=${returnCode}
+else
+        echo "CSS is stopped"
+        exitCode=2
+fi
+exit ${exitCode}

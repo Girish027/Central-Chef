@@ -1,0 +1,53 @@
+
+<configuration>
+
+  <appender name="APPLOG" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <file><%= @cobpLogsLoc %>/application.log</file>
+    <encoder>
+      <pattern>{"debugtimestamp":%date{yyyy-MM-dd HH:mm:ss.SSS,GMT},"debug_level":%-5p,"debug_Request_id":%X{RequestID},"debug_SessionID":%X{SessionID},"debug_UserID":%X{UserID},"debug_class":%c,"debug_thread":%t,"debug_line":%L,"debug_message":%m}%n</pattern>
+    </encoder>
+	<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+        <!-- rollover daily -->
+        <fileNamePattern><%= @cobpLogsLoc %>/archived/application.%d{yyyy-MM-dd}.%i.log
+        </fileNamePattern>
+        <timeBasedFileNamingAndTriggeringPolicy
+            class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+            <maxFileSize>4MB</maxFileSize>
+        </timeBasedFileNamingAndTriggeringPolicy>
+    </rollingPolicy>
+  </appender>
+
+  <appender name="AUDITLOG" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <file><%= @cobpLogsLoc %>/audit.log</file>
+    <encoder>
+      <pattern>%msg%n</pattern>
+    </encoder>
+	<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+        <!-- rollover daily -->
+        <fileNamePattern><%= @cobpLogsLoc %>/archived/audit.%d{yyyy-MM-dd}.%i.log
+        </fileNamePattern>
+        <timeBasedFileNamingAndTriggeringPolicy
+            class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+            <maxFileSize>4MB</maxFileSize>
+        </timeBasedFileNamingAndTriggeringPolicy>
+    </rollingPolicy>
+  </appender>
+
+  <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder>
+      <pattern>%date{yyyy-MM-dd HH:mm:ss.SSS,GMT} %-5p %c:%t:%L - %m%n</pattern>
+    </encoder>
+  </appender>
+
+  <logger name="com.tfsc.ilabs.cobp" level="DEBUG">
+    <appender-ref ref="APPLOG" />
+  </logger>
+
+  <logger name="audit-log" level="DEBUG">
+    <appender-ref ref="AUDITLOG" />
+  </logger>
+
+  <root level="info">
+    <appender-ref ref="STDOUT" />
+  </root>
+</configuration>

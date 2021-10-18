@@ -1,0 +1,88 @@
+spring.datasource.url=<%= node['Self-Serve-BE']['spring.datasource.url'] %>
+spring.datasource.username=<%= node['Self-Serve-BE']['spring.datasource.username'] %>
+spring.datasource.password=<%= node['Self-Serve-BE']['spring.datasource.password'] %>
+
+spring.datasource.driver-class-name=<%= node['Self-Serve-BE']['spring.datasource.driver-class-name'] %>
+spring.jpa.database-platform=<%= node['Self-Serve-BE']['spring.jpa.database-platform'] %>
+spring.jpa.show-sql=<%= node['Self-Serve-BE']['spring.jpa.show-sql'] %>
+spring.jpa.hibernate.ddl-auto=<%= node['Self-Serve-BE']['spring.jpa.hibernate.ddl-auto'] %>
+
+spring.jpa.properties.hibernate.cache.use_query_cache=<%= node['Self-Serve-BE']['spring.jpa.properties.hibernate.cache.use_query_cache'] %>
+spring.jpa.properties.hibernate.cache.use_second_level_cache=<%= node['Self-Serve-BE']['spring.jpa.properties.hibernate.cache.use_second_level_cache'] %>
+spring.jpa.properties.hibernate.cache.region.factory_class=<%= node['Self-Serve-BE']['spring.jpa.properties.hibernate.cache.region.factory_class'] %>
+spring.jpa.properties.javax.persistence.sharedCache.mode=<%= node['Self-Serve-BE']['spring.jpa.properties.javax.persistence.sharedCache.mode'] %>
+
+server.servlet.application-display-name =<%= node['Self-Serve-BE']['server.servlet.application-display-name'] %>
+spring.application.name =<%= node['Self-Serve-BE']['spring.application.name'] %>
+
+server.servlet.context-path=<%= node['Self-Serve-BE']['server.servlet.context-path'] %>
+
+spring.jackson.serialization.write_dates_as_timestamps=<%= node['Self-Serve-BE']['spring.jackson.serialization.write_dates_as_timestamp'] %>
+
+server.port=<%= node['Self-Serve-BE']['server.port'] %>
+
+allowed.origins=*
+
+logging.config=<%= node['Self-Serve-BE']['CSS-APP-LOGBACK-URL'] %>
+
+# Authentication related properties
+sso.disable=<%= node['Self-Serve-BE']['CSS-APP-SSO-DISABLE'] %>
+
+# User Management Service
+ums.baseUrl=<%= node['Self-Serve-BE']['CSS-APP-UMS-BASE-URL'] %>
+ums.enable=true
+
+role_permission.enable=true
+
+#If the authentication is okta, then need to provide valid values for the below properties
+okta.baseUrl=<%= node['Self-Serve-BE']['CSS-APP-OKTA-BASE-URL'] %>
+okta.authorization.service.id=<%= node['Self-Serve-BE']['CSS-APP-OKTA-AUTH-SERVICE-ID'] %>
+okta.client.id=<%= node['Self-Serve-BE']['CSS-APP-CLIENT-ID'] %>
+okta.client.secret=<%= node['Self-Serve-BE']['CSS-APP-CLIENT-SECRET'] %>
+okta.connection.timeout=<%= node['Self-Serve-BE']['CSS-APP-OKTA-CONNECTION-TIMEOUT'] %>
+okta.connection.mulitply=<%= node['Self-Serve-BE']['CSS-APP-OKTA-CONNECTION-MULTIPLY'] %>
+
+contentserver.baseurl = <%= node['Self-Serve-BE']['CSS-APP-CONTENT-SERVER-BASE-URL'] %>
+contentserver.css_content_base_path = <%= node['Self-Serve-BE']['CSS-APP-CONTENT-SERVER-CSS-CONTENT-BASE-PATH'] %>
+docLink= <%= node['Self-Serve-BE']['CSS-APP-DOC-LINK'] %>
+vccAppUrl= <%= node['Self-Serve-BE']['CSS-APP-VCC-APP-URL'] %>
+supportLink =  <%= node['Self-Serve-BE']['CSS-APP-SUPPORT-LINK'] %>
+toolRoot=  <%= node['Self-Serve-BE']['CSS-APP-TOOL-ROOT'] %>
+toolName =  <%= node['Self-Serve-BE']['CSS-APP-TOOL-NAME'] %>
+toolType =  <%= node['Self-Serve-BE']['CSS-APP-TOOL-TYPE'] %>
+toolTitle=  <%= node['Self-Serve-BE']['CSS-APP-TOOL-TITLE'] %>
+cssOktaEnabled=  <%= node['Self-Serve-BE']['CSS-APP-OKTA-ENABLED'] %>
+env =  <%= node['Self-Serve-BE']['CSS-APP-ENV'] %>
+serviceBaseUrl =  <%= node['Self-Serve-BE']['CSS-APP-SERVICE-BASE-URL'] %>
+parentBaseUrl =  <%= node['Self-Serve-BE']['CSS-APP-PARENT-BASE-URL'] %>
+cookies.secureFlag = <%= node['Self-Serve-BE']['CSS-APP-COOKIES-SECURE-FLAG'] %>
+cookies.httponlyFlag = <%= node['Self-Serve-BE']['CSS-APP-COOKIES-HTTPONLY-FLAG'] %>
+#When running locally make false
+config.cob.proxy=<%= node['Self-Serve-BE']['CSS-APP-PROXY-ENABLE'] %>
+config.proxy.host=<%= node['Self-Serve-BE']['CSS-APP-PROXY-HOST'] %>
+config.proxy.port=<%= node['Self-Serve-BE']['CSS-APP-PROXY-PORT'] %>
+config.proxy.protocol=<%= node['Self-Serve-BE']['CSS-APP-PROXY-PROTOCOL'] %>
+
+
+#Concurrency of orchestration module
+thread.concurrency = <%= node['Self-Serve-BE']['CSS-APP-THREAD-COUNT'] %>
+
+# WorkflowInstance timeout period (in minutes)
+workflow_instance.timeout = <%= node['Self-Serve-BE']['CSS-APP-WORKFLOW-INSTANCE-TIMEOUT'] %>
+
+#For health check Endpoints
+management.endpoints.web.exposure.include=health,info
+management.endpoints.web.exposure.exclude=
+management.health.defaults.enabled=true
+management.health.redis.enabled=false
+management.endpoint.health.show-details=always
+
+spring.cache.jcache.config=classpath:ehcache.xml
+
+cache.token.scheduler.fixedrate.millis=600000
+cache.token.scheduler.initialdelay.millis=100000
+
+bulk.storage=<%= node['Self-Serve-BE']['BULK-STORAGE'] %>
+gcp.project.id=<%= node['Self-Serve-BE']['GCP-PROJECT-ID'] %>
+gcp.bucket.name=<%= node['Self-Serve-BE']['GCP-BUCKET-NAME'] %>
+credentials.file.path=<%= node['Self-Serve-BE']['CREDENTIALS-FILE-PATH'] %>

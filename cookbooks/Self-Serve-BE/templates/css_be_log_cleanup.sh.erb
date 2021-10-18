@@ -1,0 +1,8 @@
+#!/bin/sh
+
+PATH=$PATH:/usr/local/bin
+export PATH
+
+logdir="<%= @cssLogArchiveDir %>"
+# 100 days (2400 = 24 hours * 100 days) logs are retained
+clean-directory --dir $logdir --pct 0 --minage 2400 --recurse

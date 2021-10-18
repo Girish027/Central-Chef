@@ -1,0 +1,37 @@
+#!/bin/sh
+user="tellme"
+name=`basename $0`
+stdout_log="<%= @tomcat_logs %>/applogs"
+stderr_log="<%= @tomcat_logs %>/errorlog"
+startcmd="su - $user -c <%= @tomcat_base_dir %>/bin/startup.sh"
+stopcmd="su - $user -c <%= @tomcat_base_dir %>/bin/killContainer.sh"
+case $1 in
+    start)
+        echo "Starting $name"
+        $startcmd > "$stdout_log" 2> "$stderr_log"
+        ;;
+    stop)
+        echo "Stopping $name"
+        $stopcmd > "$stdout_log" 2> "$stderr_log"
+        ;;
+    restart)
+        echo "Stopping $name"
+        $stopcmd > "$stdout_log" 2> "$stderr_log"
+        sleep 2
+        echo "Starting $name"
+        $startcmd > "$stdout_log" 2> "$stderr_log"
+        ;;
+    link)
+        ln -s ../init.d/tellme_tomcat /etc/rc3.d/S90tellme_tomcat
+        ln -s ../init.d/tellme_tomcat /etc/rc2.d/K10tellme_tomcat
+        ln -s ../init.d/tellme_tomcat /etc/rc1.d/K10tellme_tomcat
+        ln -s ../init.d/tellme_tomcat /etc/rc0.d/K10tellme_tomcat
+        ln -s ../init.d/tellme_tomcat /etc/rcS.d/K10tellme_tomcat
+        ;;
+    *)
+        echo "Usage: $0 { start | stop | restart | link } " 1>&2
+        exit 1
+        ;;
+esac
+exit 0
+# ==========================================================================

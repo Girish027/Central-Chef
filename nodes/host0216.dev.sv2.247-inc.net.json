@@ -1,0 +1,10 @@
+{
+  "name": "host0216.dev.sv2.247-inc.net",
+  "chef_environment": "assistqacore",
+  "run_list": [
+  ],
+  "normal": {
+    "tags": [
+    ]
+  }
+}

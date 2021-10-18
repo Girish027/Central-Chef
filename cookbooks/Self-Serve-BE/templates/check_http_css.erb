@@ -1,0 +1,21 @@
+#!/bin/bash
+
+URL="http://localhost:8090/self-serve/api/actuator/health"
+
+response=$(curl -s $URL)
+
+content=$(tail -n1 <<< "$response")  # get the response
+
+state=$(echo $content| grep -oP '(?<="status":")[^"]*' | head -1)
+
+
+if [[ $state == "UP" ]]
+then
+        echo "Assist Self-Serve is Running"
+        exitCode=0;
+else
+        echo "Assist Self-serve is Stopped"
+        exitCode=2;
+fi
+exit ${exitCode}
+

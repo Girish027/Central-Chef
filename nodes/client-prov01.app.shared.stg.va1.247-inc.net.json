@@ -1,0 +1,15 @@
+{
+  "name": "client-prov01.app.shared.stg.va1.247-inc.net",
+  "chef_environment": "CENTRAL-VA1-STAGE",
+  "run_list": [
+    "recipe[247infrastructure]",
+    "recipe[COBP_BE-Central::cobp-be-filebeat]",
+    "recipe[COBP_BE-Central]",
+    "recipe[Mailer-Service-Central]"
+  ],
+  "normal": {
+    "tags": [
+
+    ]
+  }
+}

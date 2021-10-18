@@ -1,0 +1,29 @@
+-os
+${target.os}
+-ws
+${target.ws}
+-arch
+${target.arch}
+-nl
+${target.nl}
+-consoleLog
+-vmargs
+-XX:+HeapDumpOnOutOfMemoryError
+-XX:HeapDumpPath=/var/tellme/logs
+-Xms512m
+-Xmx2048m
+-XX:+UseConcMarkSweepGC
+-XX:+UseParNewGC
+-XX:+PrintGCDetails
+-Xloggc:gc.log
+-Dosgi.requiredJavaVersion=1.5
+-Djetty.config=<%= @baseAppHome%>/jetty.properties
+-Dlogging.config=<%= @baseAppHome%>/log4j.properties
+-Dlog4j.configurationFile=<%= @baseAppHome%>/log4j2.properties
+-DantisamyPolicyFile=<%= @baseAppHome%>/antisamy-slashdot-1.4.4.xml
+-Dilabscore.properties=<%= @baseAppHome%>/ilabscore.properties
+-Dconfig-listener.properties=<%= @baseAppHome%>/config-listener.properties
+-XX:+UnlockDiagnosticVMOptions
+-XX:+UnsyncloadClass
+-DbuildType=deployment
+-Dfile.encoding=UTF8

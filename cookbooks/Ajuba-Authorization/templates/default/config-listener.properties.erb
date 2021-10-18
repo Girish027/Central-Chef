@@ -1,0 +1,44 @@
+# Comma separated list of sources from where to pull the configurations.
+# This is a mandatory configuration. For each of the source configured here,
+# a separate instance of polling service will be started
+source_list = ohs
+
+ohs.rest.url = <%= @ohsRestUrl%>
+ohs.entity.event.listener.class = com.tfsc.ilabs.oh.authorization.impl.OHSAuthorizationCacheListener
+# Polling interval in secs
+ohs.polling.interval_in_secs = <%= @ohsPollingInterval%>
+
+#pcs.rest.url = http://localhost:8080/ajuba-admin/client
+#pcs.entity.event.listener.class = com.tfsc.ilabs.central.configuration.test.TestEventListener
+#pcs.polling.interval_in_secs = 10
+
+ohs.managed_entities = com.tfsc.ilabs.ohs.model.Entity,com.tfsc.ilabs.ohs.model.Client,com.tfsc.ilabs.ohs.model.Account,com.tfsc.ilabs.ohs.model.Role,com.tfsc.ilabs.ohs.model.Licence,com.tfsc.ilabs.ohs.model.ClientUser,com.tfsc.ilabs.ohs.model.SystemUser,com.tfsc.ilabs.ohs.model.UserRoleList,com.tfsc.ilabs.ohs.model.ClientLicenceList,com.tfsc.ilabs.ohs.model.EntityTagList,com.tfsc.ilabs.ohs.model.UserTagList,com.tfsc.ilabs.ohs.model.Tag,com.tfsc.ilabs.ohs.model.UserAccountList
+ohs.com.tfsc.ilabs.ohs.model.Entity.class = com.tfsc.ilabs.ohs.model.entities.Entity
+ohs.com.tfsc.ilabs.ohs.model.Client.class = com.tfsc.ilabs.ohs.model.entities.Client
+ohs.com.tfsc.ilabs.ohs.model.Account.class = com.tfsc.ilabs.ohs.model.entities.Account
+ohs.com.tfsc.ilabs.ohs.model.Role.class = com.tfsc.ilabs.ohs.model.entities.Role
+ohs.com.tfsc.ilabs.ohs.model.Licence.class = com.tfsc.ilabs.ohs.model.entities.Licence
+ohs.com.tfsc.ilabs.ohs.model.ClientUser.class = com.tfsc.ilabs.ohs.model.entities.ClientUser
+ohs.com.tfsc.ilabs.ohs.model.SystemUser.class = com.tfsc.ilabs.ohs.model.entities.SystemUser
+ohs.com.tfsc.ilabs.ohs.model.UserRoleList.class = com.tfsc.ilabs.ohs.model.entities.UserRoleList
+ohs.com.tfsc.ilabs.ohs.model.ClientLicenceList.class = com.tfsc.ilabs.ohs.model.entities.ClientLicenceList
+ohs.com.tfsc.ilabs.ohs.model.EntityTagList.class = com.tfsc.ilabs.ohs.model.entities.EntityTagList
+ohs.com.tfsc.ilabs.ohs.model.UserTagList.class = com.tfsc.ilabs.ohs.model.entities.UserTagList
+ohs.com.tfsc.ilabs.ohs.model.Tag.class = com.tfsc.ilabs.ohs.model.entities.Tag
+ohs.com.tfsc.ilabs.ohs.model.UserAccountList.class = com.tfsc.ilabs.ohs.model.entities.UserAccountList
+#ohs.client.class = com.tfsc.ilabs.ohs.domain.Client
+#ohs.account.class = com.tfsc.ilabs.ohs.domain.Account
+#ohs.team.class = com.tfsc.ilabs.ohs.domain.Team
+#ohs.license.class = com.tfsc.ilabs.ohs.domain.License
+#ohs.tag.class = com.tfsc.ilabs.ohs.domain.Tag
+
+pcs.managed_entities = report_type, dimension
+
+# REST endpoint url
+#rest_end_point_uri = http://localhost:8080/ajuba-admin/client
+#
+#json_parser_class = com.tfsc.ilabs.central.configuration.test.TestConfigurationParser
+#
+#entity_event_listener_class = com.tfsc.ilabs.central.configuration.test.TestEventListener
+#
+#polling_interval_secs = 10

@@ -1,0 +1,25 @@
+#!/bin/sh
+
+# Kills running tomcat process
+
+#Fetch tomcat bin directory path
+SCRIPT=$(readlink -f "$0")
+
+SCRIPTPATH=$(dirname "$SCRIPT")
+
+cd $SCRIPTPATH
+
+cd ..
+
+# Current directory set to CATALINA_HOME
+
+#PID should reside in tomcat home location
+PID_FILE="$PWD/pid"
+
+echo "PID file will be looked up at ${PID_FILE}"
+
+PID=$(<"$PID_FILE")
+
+echo "Killing process ${PID}"
+kill -9 $PID
+

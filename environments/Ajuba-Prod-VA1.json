@@ -1,0 +1,18 @@
+{
+  "name": "Ajuba-Prod-VA1",
+  "description": "",
+  "cookbook_versions": {
+  },
+  "json_class": "Chef::Environment",
+  "chef_type": "environment",
+  "default_attributes": {
+  },
+  "override_attributes": {
+    "filebeat":{
+      "version":"filebeat-5.6.5-1.x86_64 --nogpgcheck",
+      "logstash":{
+         "host":"logstash.logpool.lb-priv.va1.247-inc.net:5120"
+      }
+   }
+  }
+}

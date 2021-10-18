@@ -1,0 +1,103 @@
+server {
+    listen       80 default_server;
+    server_name  localhost;
+    server_tokens off;
+    underscores_in_headers on;
+
+    #charset koi8-r;
+    #access_log  /var/log/nginx/log/host.access.log  main;
+
+    add_header X-Frame-Options DENY;
+
+
+     location / {
+        proxy_pass http://localhost:8080;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_cache_bypass $http_upgrade;
+     }
+
+
+     location /cobp-service {
+        proxy_pass <%= node['COBP_FE-Central']['COBP-BE-URL'] %>;
+    }
+
+    location /auth/UI/Logout {
+        proxy_pass <%= node['COBP_FE-Central']['LOGOUT-URL'] %>;
+    }
+
+    location /self-serve {
+	
+	    proxy_buffer_size          128k;
+        proxy_buffers              4 256k;
+        proxy_busy_buffers_size    256k;
+	    add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;
+		add_header Content-Security-Policy "script-src 'self' 'unsafe-eval' 'nonce-rdKqAGvth46g8eT8xcxPuYJAniqO' 'sha256-PKsvRZUJuvW4fO4T7saOe8JuVR0BMFAt5fb2f7DhIpw=' 'sha256-qds47lv/QuUNu2DtwNjqfbT/XuJIPBOn2zjfiy3OIO0=' 'sha256-jsXf5wGJpwX6mqjrZznOyvcXa5OkV0KLYO9d39+iD+M=' *.247-inc.net *.247.ai  blob: *.247-inc.net *.247.ai;";		
+        proxy_pass http://localhost:8090/self-serve;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_cache_bypass $http_upgrade;
+    }
+	
+	location /assist-console-ui/{
+       root /var/tellme/css-ui;
+
+    }
+
+
+    location /assets/{
+       root <%= node['COBP_FE-Central']['COBP-APP-BUILD-DIR'] %>/public;
+    }
+
+   location /client/configure {
+               set $new_request_uri $request_uri;
+
+          if ($request_uri ~ (.*)\?(.*)&(.*)) {
+              set $new_request_uri $1%3F$2%26$3;
+          }
+
+       proxy_pass http://localhost:8080$new_request_uri;
+       proxy_http_version 1.1;
+       proxy_set_header Upgrade $http_upgrade;
+       proxy_set_header Connection 'upgrade';
+       proxy_set_header Host $host;
+       proxy_cache_bypass $http_upgrade;
+
+    }
+
+    #error_page  404              /404.html;
+
+    # redirect server error pages to the static page /50x.html
+    #
+    error_page   500 502 503 504  /50x.html;
+    location = /50x.html {
+        root   /usr/share/nginx/html;
+    }
+
+    # proxy the PHP scripts to Apache listening on 127.0.0.1:80
+    #
+    #location ~ \.php$ {
+    #    proxy_pass   http://127.0.0.1;
+    #}
+
+    # pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000
+    #
+    #location ~ \.php$ {
+    #    root           html;
+    #    fastcgi_pass   127.0.0.1:9000;
+    #    fastcgi_index  index.php;
+    #    fastcgi_param  SCRIPT_FILENAME  /scripts$fastcgi_script_name;
+    #    include        fastcgi_params;
+    #}
+
+    # deny access to .htaccess files, if Apache's document root
+    # concurs with nginx's one
+    #
+    #location ~ /\.ht {
+    #    deny  all;
+    #}
+}

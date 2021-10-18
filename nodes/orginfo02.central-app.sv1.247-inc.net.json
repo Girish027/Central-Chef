@@ -1,0 +1,10 @@
+{
+  "name": "orginfo02.central-app.sv1.247-inc.net",
+  "chef_environment": "Ajuba-Prod-SV1",
+  "run_list": [
+  ],
+  "normal": {
+    "tags": [
+    ]
+  }
+}

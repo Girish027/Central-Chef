@@ -1,0 +1,12 @@
+#!/bin/bash
+ps -ef | grep "/var/tellme/ajuba-admin/tomcat" | grep -v "grep"
+returnCode=$?
+if [ ${returnCode} -eq 0 ]
+then
+        echo "Tomcat(UAC) is running"
+        exitCode=${returnCode}
+else
+        echo "Tomcat(UAC) is stopped"
+        exitCode=2
+fi
+exit ${exitCode}

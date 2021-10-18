@@ -1,0 +1,79 @@
+
+<configuration>
+
+<appender name="APPLOG" class="ch.qos.logback.core.rolling.RollingFileAppender">
+  <file><%= @logsLoc %>/application.log</file>
+  <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+    <pattern>{"debugtimestamp":%date{yyyy-MM-dd HH:mm:ss.SSS,GMT},"debug_level":%-5p,"debug_Request_id":%X{RequestID},"debug_SessionID":%X{SessionID},"debug_UserID":%X{UserID},"debug_class":%c,"debug_thread":%t,"debug_line":%L,"debug_message":%m}%n</pattern>
+  </encoder>
+<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <!-- rollover daily -->
+      <fileNamePattern><%= @logsLoc %>/archived/application.%d{yyyy-MM-dd}.%i.log
+      </fileNamePattern>
+      <timeBasedFileNamingAndTriggeringPolicy
+          class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+          <maxFileSize>4MB</maxFileSize>
+      </timeBasedFileNamingAndTriggeringPolicy>
+  </rollingPolicy>
+</appender>
+<appender name="UserEventFile"
+            class="ch.qos.logback.core.rolling.RollingFileAppender">
+      <file><%= @logsLoc %>/usagemetrics.log</file>
+      <encoder
+              class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+                <Pattern>{"debugtimestamp":%date{yyyy-MM-dd HH:mm:ss.SSS,GMT},"debug_level":%-5p,"debug_request_id":%X{RequestID},"debug_sessionid":%X{SessionID},"debug_userid":%X{UserID},"debug_class":%c,"debug_message":%m}%n</Pattern>
+      </encoder>
+
+      <rollingPolicy
+              class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+          <!-- rollover daily and when the file reaches 10 MegaBytes -->
+          <fileNamePattern><%= @logsLoc %>/archived/usagemetrics-%d{yyyy-MM-dd}.%i.log
+          </fileNamePattern>
+          <timeBasedFileNamingAndTriggeringPolicy
+                  class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+              <maxFileSize>50MB</maxFileSize>
+          </timeBasedFileNamingAndTriggeringPolicy>
+      </rollingPolicy>
+  </appender>
+
+  <appender name="AuditFile"
+          class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file><%= @logsLoc %>/user_auditlog.log</file>
+        <encoder
+                class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+         <Pattern>{type:"user_action_audit","timestamp":%d{yyyy-MM-dd HH:mm:ss.SSS,GMT},"product":"Self-Serve","user":%X{UserID}, "payload":%m}%n</Pattern>
+
+        </encoder>
+
+        <rollingPolicy
+                class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- rollover daily and when the file reaches 10 MegaBytes -->
+            <fileNamePattern><%= @logsLoc %>/user_auditlog-%d{yyyy-MM-dd}.%i.log
+            </fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy
+                    class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>50MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+    </appender>
+
+<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+  <encoder>
+    <pattern>%date{yyyy-MM-dd HH:mm:ss.SSS,GMT} %-5p %c:%t:%L - %m%n</pattern>
+  </encoder>
+</appender>
+
+
+<logger name="userevent-log" level="INFO">
+      <appender-ref ref="UserEventFile" />
+</logger>
+
+<logger name="useraudit-log" level="INFO">
+	<appender-ref ref="AuditFile" />
+</logger>
+
+<root level="info">
+  <appender-ref ref="STDOUT" />
+  <appender-ref ref="APPLOG" />
+</root>
+</configuration>

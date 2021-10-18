@@ -1,0 +1,15 @@
+{
+  "name": "dev-client-prov01.app.shared.int.sv2.247-inc.net",
+  "chef_environment": "CENTRAL-DEV",
+  "run_list": [
+    "recipe[247infrastructure]",
+    "recipe[COBP_BE-Central::cobp-be-filebeat]",
+    "recipe[COBP_BE-Central]",
+    "recipe[Mailer-Service-Central]"
+  ],
+  "normal": {
+    "tags": [
+
+    ]
+  }
+}

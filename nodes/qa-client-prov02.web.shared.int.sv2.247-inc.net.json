@@ -1,0 +1,14 @@
+{
+  "name": "qa-client-prov02.web.shared.int.sv2.247-inc.net",
+  "chef_environment": "CENTRAL-QA",
+  "run_list": [
+    "recipe[247infrastructure]",
+    "recipe[COBP_FE-Central::cobp-fe-filebeat]",
+    "recipe[COBP_FE-Central]"
+  ],
+  "normal": {
+    "tags": [
+
+    ]
+  }
+}

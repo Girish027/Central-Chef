@@ -1,0 +1,13 @@
+#!/bin/bash
+ps -ef | grep "/var/tellme/centralMailer/bin/" | grep -v "grep"
+returnCode=$?
+if [ ${returnCode} -eq 0 ]
+then
+        echo "Spirit Mailer is running"
+        exitCode=${returnCode}
+else
+        echo "Spirit Mailer is stopped"
+        exitCode=2
+fi
+exit ${exitCode}
+

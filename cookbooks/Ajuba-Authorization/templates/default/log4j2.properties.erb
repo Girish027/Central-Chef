@@ -1,0 +1,435 @@
+name = PropertiesConfig
+logging.name.replacement.pattern=^com.tfsc.ilabs\.&&&
+logging.log4j.config.reload=true
+logging.log4j.resetHierarchy=false
+
+appenders = eclipse,hibernate,jgroups,console,uiEventsTrackingLogfile,visitorEventsTrackingLogfile,interactionEventTrackingLogfile,profanityFilterLogFile,agentStatsTrackingLogfile,auditingEventsLogfile,securityAuditEventsLogfile,healthCheckerLogFile,diagnosticEventsLogfile,cacheLogfile,monitoringEventsLogfile,businessmonitoringEventsLogfile,cscLogfile,caEventLogFile,interactionStateEventsLogFile,interactionContextEventsLogFile,interactionEntityLogFile,chronosHealthCheckerLogFile,logfile,errorLogfile
+
+appender.console.type = Console
+appender.console.name = STDOUT
+appender.console.layout.type = PatternLayout
+appender.console.layout.pattern = [%d{DEFAULT}] %5p [L:%X{LOGGER} T:'%X{THREAD}' I:%X{INSTANCE_ID} TR:%X{TRACKING_ID} SQ:%X{SEQUENCE_ID} ND:%X{NODE_ID}]  - %m%n
+
+appender.uiEventsTrackingLogfile.type = RollingFile
+appender.uiEventsTrackingLogfile.name = uiEventsTrackingLogfile
+appender.uiEventsTrackingLogfile.fileName = logs/uiEventTrackingLogfile.log
+appender.uiEventsTrackingLogfile.filePattern = logs/uiEventTrackingLogfile.log.%d{yyyy-MM-dd-HH}
+appender.uiEventsTrackingLogfile.layout.type = PatternLayout
+appender.uiEventsTrackingLogfile.layout.pattern = [%d{DEFAULT}] %5p - %m%n
+appender.uiEventsTrackingLogfile.policies.type = Policies
+appender.uiEventsTrackingLogfile.policies.time.type = TimeBasedTriggeringPolicy
+appender.uiEventsTrackingLogfile.policies.time.interval = 1
+appender.uiEventsTrackingLogfile.policies.time.modulate = true
+appender.uiEventsTrackingLogfile.strategy.type = DefaultRolloverStrategy
+appender.uiEventsTrackingLogfile.strategy.max = 20
+appender.uiEventsTrackingLogfile.bufferedIO = true
+appender.uiEventsTrackingLogfile.bufferSize = 10000
+
+appender.visitorEventsTrackingLogfile.type = RollingFile
+appender.visitorEventsTrackingLogfile.name = visitorEventsTrackingLogfile
+appender.visitorEventsTrackingLogfile.fileName = logs/visitorEventsTrackingLogfile.log
+appender.visitorEventsTrackingLogfile.filePattern = logs/visitorEventsTrackingLogfile.log.%d{yyyy-MM-dd-HH}
+appender.visitorEventsTrackingLogfile.layout.type = PatternLayout
+appender.visitorEventsTrackingLogfile.layout.pattern = [%d{DEFAULT}] %5p [L:%X{LOGGER} T:'%X{THREAD}' I:%X{INSTANCE_ID} TR:%X{TRACKING_ID} SQ:%X{SEQUENCE_ID} ND:%X{NODE_ID}]  - %m%n
+appender.visitorEventsTrackingLogfile.policies.type = Policies
+appender.visitorEventsTrackingLogfile.policies.time.type = TimeBasedTriggeringPolicy
+appender.visitorEventsTrackingLogfile.policies.time.interval = 1
+appender.visitorEventsTrackingLogfile.policies.time.modulate = true
+appender.visitorEventsTrackingLogfile.strategy.type = DefaultRolloverStrategy
+appender.visitorEventsTrackingLogfile.strategy.max = 20
+appender.visitorEventsTrackingLogfile.bufferedIO = true
+appender.visitorEventsTrackingLogfile.bufferSize = 10000
+
+appender.interactionEventTrackingLogfile.type = RollingFile
+appender.interactionEventTrackingLogfile.name = interactionEventTrackingLogfile
+appender.interactionEventTrackingLogfile.fileName = logs/interactionEventsLogfile.log
+appender.interactionEventTrackingLogfile.filePattern = logs/interactionEventsLogfile.log.%d{yyyy-MM-dd-HH-mm}
+appender.interactionEventTrackingLogfile.layout.type = PatternLayout
+appender.interactionEventTrackingLogfile.layout.pattern = [%d{DEFAULT}] %5p - %m%n
+appender.interactionEventTrackingLogfile.policies.type = Policies
+appender.interactionEventTrackingLogfile.policies.time.type = TimeBasedTriggeringPolicy
+appender.interactionEventTrackingLogfile.policies.time.interval = 1
+appender.interactionEventTrackingLogfile.policies.time.modulate = true
+appender.interactionEventTrackingLogfile.strategy.type = DefaultRolloverStrategy
+appender.interactionEventTrackingLogfile.strategy.max = 20
+appender.interactionEventTrackingLogfile.bufferedIO = false
+
+appender.profanityFilterLogFile.type = RollingFile
+appender.profanityFilterLogFile.name = profanityFilterLogFile
+appender.profanityFilterLogFile.fileName = logs/profanityFilterLogFile.log
+appender.profanityFilterLogFile.filePattern = logs/profanityFilterLogFile.log.%d{yyyy-MM-dd-HH-mm}
+appender.profanityFilterLogFile.layout.type = PatternLayout
+appender.profanityFilterLogFile.layout.pattern = [%d{DEFAULT}] %5p - %m%n
+appender.profanityFilterLogFile.policies.type = Policies
+appender.profanityFilterLogFile.policies.time.type = TimeBasedTriggeringPolicy
+appender.profanityFilterLogFile.policies.time.interval = 1
+appender.profanityFilterLogFile.policies.time.modulate = true
+appender.profanityFilterLogFile.strategy.type = DefaultRolloverStrategy
+appender.profanityFilterLogFile.strategy.max = 20
+appender.profanityFilterLogFile.bufferedIO = false
+
+appender.agentStatsTrackingLogfile.type = RollingFile
+appender.agentStatsTrackingLogfile.name = agentStatsTrackingLogfile
+appender.agentStatsTrackingLogfile.fileName = logs/agentStatsTrackingLogfile.log
+appender.agentStatsTrackingLogfile.filePattern = logs/agentStatsTrackingLogfile.log.%d{yyyy-MM-dd-HH-mm-ss}
+appender.agentStatsTrackingLogfile.layout.type = PatternLayout
+appender.agentStatsTrackingLogfile.layout.pattern = [%d{DEFAULT}] %5p - %m%n
+appender.agentStatsTrackingLogfile.policies.type = Policies
+appender.agentStatsTrackingLogfile.policies.time.type = TimeBasedTriggeringPolicy
+appender.agentStatsTrackingLogfile.policies.time.interval = 1
+appender.agentStatsTrackingLogfile.policies.time.modulate = true
+appender.agentStatsTrackingLogfile.strategy.type = DefaultRolloverStrategy
+appender.agentStatsTrackingLogfile.strategy.max = 20
+appender.agentStatsTrackingLogfile.bufferedIO = false
+
+appender.auditingEventsLogfile.type = RollingFile
+appender.auditingEventsLogfile.name = auditingEventsLogfile
+appender.auditingEventsLogfile.fileName = logs/auditingEventsLogfile.log
+appender.auditingEventsLogfile.filePattern = logs/auditingEventsLogfile.log.%d{yyyy-MM-dd-HH-mm}
+appender.auditingEventsLogfile.layout.type = PatternLayout
+appender.auditingEventsLogfile.layout.pattern = [%d{DEFAULT}] %5p - %m%n
+appender.auditingEventsLogfile.policies.type = Policies
+appender.auditingEventsLogfile.policies.time.type = TimeBasedTriggeringPolicy
+appender.auditingEventsLogfile.policies.time.interval = 1
+appender.auditingEventsLogfile.policies.time.modulate = true
+appender.auditingEventsLogfile.strategy.type = DefaultRolloverStrategy
+appender.auditingEventsLogfile.strategy.max = 20
+appender.auditingEventsLogfile.bufferedIO = false
+
+appender.securityAuditEventsLogfile.type = RollingFile
+appender.securityAuditEventsLogfile.name = securityAuditEventsLogfile
+appender.securityAuditEventsLogfile.fileName = logs/securityAuditEventsLogfile.log
+appender.securityAuditEventsLogfile.filePattern = logs/securityAuditEventsLogfile.log.%d{yyyy-MM-dd-HH-mm}
+appender.securityAuditEventsLogfile.layout.type = PatternLayout
+appender.securityAuditEventsLogfile.layout.pattern = [%d{DEFAULT}] %5p - %m%n
+appender.securityAuditEventsLogfile.policies.type = Policies
+appender.securityAuditEventsLogfile.policies.time.type = TimeBasedTriggeringPolicy
+appender.securityAuditEventsLogfile.policies.time.interval = 1
+appender.securityAuditEventsLogfile.policies.time.modulate = true
+appender.securityAuditEventsLogfile.strategy.type = DefaultRolloverStrategy
+appender.securityAuditEventsLogfile.strategy.max = 20
+appender.securityAuditEventsLogfile.bufferedIO = false
+
+appender.healthCheckerLogFile.type = RollingFile
+appender.healthCheckerLogFile.name = healthCheckerLogFile
+appender.healthCheckerLogFile.fileName = logs/healthCheckerLogFile.log
+appender.healthCheckerLogFile.filePattern = logs/healthCheckerLogFile.log.%d{yyyy-MM-dd-HH}
+appender.healthCheckerLogFile.layout.type = PatternLayout
+appender.healthCheckerLogFile.layout.pattern = [%d{DEFAULT}] %5p [L:%X{LOGGER} T:'%X{THREAD}' I:%X{INVOCATION_ID} IS:%X{INSTANCE_ID} TR:%X{TRACKING_ID} SQ:%X{SEQUENCE_ID} ND:%X{NODE_ID}]  - %m%n
+appender.healthCheckerLogFile.policies.type = Policies
+appender.healthCheckerLogFile.policies.time.type = TimeBasedTriggeringPolicy
+appender.healthCheckerLogFile.policies.time.interval = 1
+appender.healthCheckerLogFile.policies.time.modulate = true
+appender.healthCheckerLogFile.strategy.type = DefaultRolloverStrategy
+appender.healthCheckerLogFile.strategy.max = 20
+appender.healthCheckerLogFile.bufferedIO = false
+
+appender.diagnosticEventsLogfile.type = RollingFile
+appender.diagnosticEventsLogfile.name = diagnosticEventsLogfile
+appender.diagnosticEventsLogfile.fileName = logs/diagnosticEventsLogfile.log
+appender.diagnosticEventsLogfile.filePattern = logs/diagnosticEventsLogfile.log.%d{yyyy-MM-dd-HH}
+appender.diagnosticEventsLogfile.layout.type = PatternLayout
+appender.diagnosticEventsLogfile.layout.pattern = [%d{DEFAULT}] %5p [L:%X{LOGGER} T:'%X{THREAD}' I:%X{INVOCATION_ID} IS:%X{INSTANCE_ID} TR:%X{TRACKING_ID} SQ:%X{SEQUENCE_ID} ND:%X{NODE_ID}]  - %m%n
+appender.diagnosticEventsLogfile.policies.type = Policies
+appender.diagnosticEventsLogfile.policies.time.type = TimeBasedTriggeringPolicy
+appender.diagnosticEventsLogfile.policies.time.interval = 1
+appender.diagnosticEventsLogfile.policies.time.modulate = true
+appender.diagnosticEventsLogfile.strategy.type = DefaultRolloverStrategy
+appender.diagnosticEventsLogfile.strategy.max = 20
+appender.diagnosticEventsLogfile.bufferedIO = true
+appender.diagnosticEventsLogfile.bufferSize = 10000
+
+
+appender.cacheLogfile.type = RollingFile
+appender.cacheLogfile.name = cacheLogfile
+appender.cacheLogfile.fileName = logs/cacheLogfile.log
+appender.cacheLogfile.filePattern = logs/cacheLogfile.log.%d{yyyy-MM-dd-HH}
+appender.cacheLogfile.layout.type = PatternLayout
+appender.cacheLogfile.layout.pattern = [%d{DEFAULT}] %5p [L:%X{LOGGER} T:'%X{THREAD}' I:%X{INVOCATION_ID} IS:%X{INSTANCE_ID} TR:%X{TRACKING_ID} SQ:%X{SEQUENCE_ID} ND:%X{NODE_ID}]  - %m%n
+appender.cacheLogfile.policies.type = Policies
+appender.cacheLogfile.policies.time.type = TimeBasedTriggeringPolicy
+appender.cacheLogfile.policies.time.interval = 1
+appender.cacheLogfile.policies.time.modulate = true
+appender.cacheLogfile.strategy.type = DefaultRolloverStrategy
+appender.cacheLogfile.strategy.max = 20
+appender.cacheLogfile.bufferedIO = true
+appender.cacheLogfile.bufferSize = 10000
+
+
+appender.monitoringEventsLogfile.type = RollingFile
+appender.monitoringEventsLogfile.name = monitoringEventsLogfile
+appender.monitoringEventsLogfile.fileName = logs/monitoringEventsLogfile.log
+appender.monitoringEventsLogfile.filePattern = logs/monitoringEventsLogfile.log.%d{yyyy-MM-dd-HH}
+appender.monitoringEventsLogfile.layout.type = PatternLayout
+appender.monitoringEventsLogfile.layout.pattern = [%d{DEFAULT}] %5p [L:%X{LOGGER} T:'%X{THREAD}' I:%X{INVOCATION_ID} IS:%X{INSTANCE_ID} TR:%X{TRACKING_ID} SQ:%X{SEQUENCE_ID} ND:%X{NODE_ID}]  - %m%n
+appender.monitoringEventsLogfile.policies.type = Policies
+appender.monitoringEventsLogfile.policies.time.type = TimeBasedTriggeringPolicy
+appender.monitoringEventsLogfile.policies.time.interval = 1
+appender.monitoringEventsLogfile.policies.time.modulate = true
+appender.monitoringEventsLogfile.strategy.type = DefaultRolloverStrategy
+appender.monitoringEventsLogfile.strategy.max = 20
+appender.monitoringEventsLogfile.bufferedIO = true
+appender.monitoringEventsLogfile.bufferSize = 10000
+
+appender.businessmonitoringEventsLogfile.type = RollingFile
+appender.businessmonitoringEventsLogfile.name = businessmonitoringEventsLogfile
+appender.businessmonitoringEventsLogfile.fileName = logs/monitoringEventsLogfile.log
+appender.businessmonitoringEventsLogfile.filePattern = logs/monitoringEventsLogfile.log.%d{yyyy-MM-dd-HH}
+appender.businessmonitoringEventsLogfile.layout.type = PatternLayout
+appender.businessmonitoringEventsLogfile.layout.pattern = [%d{DEFAULT}] %5p [L:%X{LOGGER} T:'%X{THREAD}' I:%X{INVOCATION_ID} IS:%X{INSTANCE_ID} TR:%X{TRACKING_ID} SQ:%X{SEQUENCE_ID} ND:%X{NODE_ID}]  - %m%n
+appender.businessmonitoringEventsLogfile.policies.type = Policies
+appender.businessmonitoringEventsLogfile.policies.time.type = TimeBasedTriggeringPolicy
+appender.businessmonitoringEventsLogfile.policies.time.interval = 1
+appender.businessmonitoringEventsLogfile.policies.time.modulate = true
+appender.businessmonitoringEventsLogfile.strategy.type = DefaultRolloverStrategy
+appender.businessmonitoringEventsLogfile.strategy.max = 20
+appender.businessmonitoringEventsLogfile.bufferedIO = true
+appender.businessmonitoringEventsLogfile.bufferSize = 10000
+
+appender.cscLogfile.type = RollingFile
+appender.cscLogfile.name = cscLogfile
+appender.cscLogfile.fileName = logs/cscLogfile.log
+appender.cscLogfile.filePattern = logs/cscLogfile.log.%d{yyyy-MM-dd}
+appender.cscLogfile.layout.type = PatternLayout
+appender.cscLogfile.layout.pattern = [%d{DEFAULT}] %5p [L:%X{LOGGER} T:'%X{THREAD}' I:%X{INVOCATION_ID} IS:%X{INSTANCE_ID} TR:%X{TRACKING_ID} SQ:%X{SEQUENCE_ID} ND:%X{NODE_ID}]  - %m%n
+appender.cscLogfile.policies.type = Policies
+appender.cscLogfile.policies.time.type = TimeBasedTriggeringPolicy
+appender.cscLogfile.policies.time.interval = 1
+appender.cscLogfile.policies.time.modulate = true
+appender.cscLogfile.strategy.type = DefaultRolloverStrategy
+appender.cscLogfile.strategy.max = 20
+appender.cscLogfile.bufferedIO = true
+appender.cscLogfile.bufferSize = 10000
+
+appender.caEventLogFile.type = RollingFile
+appender.caEventLogFile.name = caEventLogFile
+appender.caEventLogFile.fileName = logs/caEventLogFile.log
+appender.caEventLogFile.filePattern = logs/caEventLogFile.log.%d{yyyy-MM-dd-HH}
+appender.caEventLogFile.layout.type = PatternLayout
+appender.caEventLogFile.layout.pattern = [%d{DEFAULT}] %5p [L:%X{LOGGER} T:'%X{THREAD}' I:%X{INVOCATION_ID} IS:%X{INSTANCE_ID} TR:%X{TRACKING_ID} SQ:%X{SEQUENCE_ID} ND:%X{NODE_ID}]  - %m%n
+appender.caEventLogFile.policies.type = Policies
+appender.caEventLogFile.policies.time.type = TimeBasedTriggeringPolicy
+appender.caEventLogFile.policies.time.interval = 1
+appender.caEventLogFile.policies.time.modulate = true
+appender.caEventLogFile.strategy.type = DefaultRolloverStrategy
+appender.caEventLogFile.strategy.max = 20
+appender.caEventLogFile.bufferedIO = true
+appender.caEventLogFile.bufferSize = 10000
+
+appender.interactionStateEventsLogFile.type = RollingFile
+appender.interactionStateEventsLogFile.name = interactionStateEventsLogFile
+appender.interactionStateEventsLogFile.fileName = logs/interactionStateEventsLogFile.log
+appender.interactionStateEventsLogFile.filePattern = logs/interactionStateEventsLogFile.log.%d{yyyy-MM-dd-HH}
+appender.interactionStateEventsLogFile.layout.type = PatternLayout
+appender.interactionStateEventsLogFile.layout.pattern = [%d{DEFAULT}] %5p - %m%n
+appender.interactionStateEventsLogFile.policies.type = Policies
+appender.interactionStateEventsLogFile.policies.time.type = TimeBasedTriggeringPolicy
+appender.interactionStateEventsLogFile.policies.time.interval = 1
+appender.interactionStateEventsLogFile.policies.time.modulate = true
+appender.interactionStateEventsLogFile.strategy.type = DefaultRolloverStrategy
+appender.interactionStateEventsLogFile.strategy.max = 20
+appender.interactionStateEventsLogFile.bufferedIO = true
+appender.interactionStateEventsLogFile.bufferSize = 10000
+
+appender.interactionContextEventsLogFile.type = RollingFile
+appender.interactionContextEventsLogFile.name = interactionContextEventsLogFile
+appender.interactionContextEventsLogFile.fileName = logs/interactionContextEventsLogFile.log
+appender.interactionContextEventsLogFile.filePattern = logs/interactionContextEventsLogFile.log.%d{yyyy-MM-dd-HH}
+appender.interactionContextEventsLogFile.layout.type = PatternLayout
+appender.interactionContextEventsLogFile.layout.pattern = [%d{DEFAULT}] %5p - %m%n
+appender.interactionContextEventsLogFile.policies.type = Policies
+appender.interactionContextEventsLogFile.policies.time.type = TimeBasedTriggeringPolicy
+appender.interactionContextEventsLogFile.policies.time.interval = 1
+appender.interactionContextEventsLogFile.policies.time.modulate = true
+appender.interactionContextEventsLogFile.strategy.type = DefaultRolloverStrategy
+appender.interactionContextEventsLogFile.strategy.max = 20
+appender.interactionContextEventsLogFile.bufferedIO = true
+appender.interactionContextEventsLogFile.bufferSize = 10000
+
+appender.interactionEntityLogFile.type = RollingFile
+appender.interactionEntityLogFile.name = interactionEntityLogFile
+appender.interactionEntityLogFile.fileName = logs/interactionEntityLogFile.log
+appender.interactionEntityLogFile.filePattern = logs/interactionEntityLogFile.log.%d{yyyy-MM-dd-HH}
+appender.interactionEntityLogFile.layout.type = PatternLayout
+appender.interactionEntityLogFile.layout.pattern = [%d{DEFAULT}] %5p - %m%n
+appender.interactionEntityLogFile.policies.type = Policies
+appender.interactionEntityLogFile.policies.time.type = TimeBasedTriggeringPolicy
+appender.interactionEntityLogFile.policies.time.interval = 1
+appender.interactionEntityLogFile.policies.time.modulate = true
+appender.interactionEntityLogFile.strategy.type = DefaultRolloverStrategy
+appender.interactionEntityLogFile.strategy.max = 20
+appender.interactionEntityLogFile.bufferedIO = true
+appender.interactionEntityLogFile.bufferSize = 10000
+
+appender.chronosHealthCheckerLogFile.type = RollingFile
+appender.chronosHealthCheckerLogFile.name = chronosHealthCheckerLogFile
+appender.chronosHealthCheckerLogFile.fileName = chronosHealthCheckerLogFile.log
+appender.chronosHealthCheckerLogFile.filePattern = logs/chronosHealthCheckerLogFile.log.%d{yyyy-MM-dd-HH}
+appender.chronosHealthCheckerLogFile.layout.type = PatternLayout
+appender.chronosHealthCheckerLogFile.layout.pattern = [%d{DEFAULT}] %5p - %m%n
+appender.chronosHealthCheckerLogFile.policies.type = Policies
+appender.chronosHealthCheckerLogFile.policies.time.type = TimeBasedTriggeringPolicy
+appender.chronosHealthCheckerLogFile.policies.time.interval = 1
+appender.chronosHealthCheckerLogFile.policies.time.modulate = true
+appender.chronosHealthCheckerLogFile.strategy.type = DefaultRolloverStrategy
+appender.chronosHealthCheckerLogFile.strategy.max = 20
+appender.chronosHealthCheckerLogFile.bufferedIO = false
+
+appender.logfile.type = RollingFile
+appender.logfile.name = logfile
+appender.logfile.fileName = ../logs/logfile.log
+appender.logfile.filePattern = ../logs/logfile.log.%d{yyyy-MM-dd-HH-mm}
+appender.logfile.layout.type = PatternLayout
+appender.logfile.layout.pattern =  [%d{DEFAULT}] %5p [L:%X{LOGGER} T:'%X{THREAD}' I:%X{INSTANCE_ID} TR:%X{TRACKING_ID} SQ:%X{SEQUENCE_ID} ND:%X{NODE_ID}]  - %m%n
+appender.logfile.policies.type = Policies
+appender.logfile.policies.time.type = TimeBasedTriggeringPolicy
+appender.logfile.policies.time.interval = 1
+appender.logfile.policies.time.modulate = true
+appender.logfile.strategy.type = DefaultRolloverStrategy
+appender.logfile.strategy.max = 20
+appender.logfile.bufferedIO = false
+
+appender.errorLogfile.type = RollingFile
+appender.errorLogfile.name = errorLogfile
+appender.errorLogfile.fileName = ../logs/errorLogfile.log
+appender.errorLogfile.filePattern = ../logs/errorLogfile.log.%d{yyyy-MM-dd-HH}
+appender.errorLogfile.layout.type = PatternLayout
+appender.errorLogfile.layout.pattern = [%d{DEFAULT}] %5p [L:%X{LOGGER} T:'%X{THREAD}' I:%X{INVOCATION_ID} IS:%X{INSTANCE_ID} TR:%X{TRACKING_ID} SQ:%X{SEQUENCE_ID} ND:%X{NODE_ID}]  - %m%n
+appender.errorLogfile.policies.type = Policies
+appender.errorLogfile.policies.time.type = TimeBasedTriggeringPolicy
+appender.errorLogfile.policies.time.interval = 1
+appender.errorLogfile.policies.time.modulate = true
+appender.errorLogfile.strategy.type = DefaultRolloverStrategy
+appender.errorLogfile.strategy.max = 20
+appender.errorLogfile.bufferedIO = true
+appender.errorLogfile.bufferSize = 10000
+
+appender.jgroups.type = Console
+appender.jgroups.name = jgroups
+appender.jgroups.layout.type = PatternLayout
+appender.jgroups.layout.pattern = [%d{DEFAULT}] %5p [L:%X{LOGGER} T:'%X{THREAD}' I:%X{INSTANCE_ID} TR:%X{TRACKING_ID} SQ:%X{SEQUENCE_ID} ND:%X{NODE_ID}]  - %m%n
+
+appender.hibernate.type = Console
+appender.hibernate.name = hibernate
+appender.hibernate.layout.type = PatternLayout
+appender.hibernate.layout.pattern = [%d{DEFAULT}] %5p [L:%X{LOGGER} T:'%X{THREAD}' I:%X{INSTANCE_ID} TR:%X{TRACKING_ID} SQ:%X{SEQUENCE_ID} ND:%X{NODE_ID}]  - %m%n
+
+appender.eclipse.type = Console
+appender.eclipse.name = eclipse
+appender.eclipse.layout.type = PatternLayout
+appender.eclipse.layout.pattern = [%d{DEFAULT}] %5p [L:%X{LOGGER} T:'%X{THREAD}' I:%X{INSTANCE_ID} TR:%X{TRACKING_ID} SQ:%X{SEQUENCE_ID} ND:%X{NODE_ID}]  - %m%n
+
+loggers = eclipse,hibernate,jgroups,uiEventsTrackingLogfile,visitorEventsTrackingLogfile,interactionEventTrackingLogfile,profanityFilterLogFile,agentStatsTrackingLogfile,auditingEventsLogfile,securityAuditEventsLogfile,healthCheckerLogFile,diagnosticEventsLogfile,cacheLogfile,monitoringEventsLogfile,businessmonitoringEventsLogfile,cscLogfile,caEventLogFile,interactionStateEventsLogFile,interactionContextEventsLogFile,interactionEntityLogFile,chronosHealthCheckerLogFile
+
+logger.uiEventsTrackingLogfile.name = uiEventsTracking
+logger.uiEventsTrackingLogfile.level = DEBUG
+logger.uiEventsTrackingLogfile.additivity = false
+logger.uiEventsTrackingLogfile.appenderRef.uiEventsTrackingLogfile.ref = uiEventsTrackingLogfile
+
+logger.visitorEventsTrackingLogfile.name = visitorEventsTracking
+logger.visitorEventsTrackingLogfile.level = DEBUG
+logger.visitorEventsTrackingLogfile.additivity = false
+logger.visitorEventsTrackingLogfile.appenderRef.visitorEventsTrackingLogfile.ref = visitorEventsTrackingLogfile
+
+logger.interactionEventTrackingLogfile.name = interactionEventsTracking
+logger.interactionEventTrackingLogfile.level = DEBUG
+logger.interactionEventTrackingLogfile.additivity = false
+logger.interactionEventTrackingLogfile.appenderRef.interactionEventTrackingLogfile.ref = interactionEventTrackingLogfile
+
+logger.profanityFilterLogFile.name = profanityFilterLogger
+logger.profanityFilterLogFile.level = INFO
+logger.profanityFilterLogFile.additivity = false
+logger.profanityFilterLogFile.appenderRef.profanityFilterLogFile.ref = profanityFilterLogFile
+
+logger.agentStatsTrackingLogfile.name = nemoAgentStatsTracking
+logger.agentStatsTrackingLogfile.level = INFO
+logger.agentStatsTrackingLogfile.additivity = false
+logger.agentStatsTrackingLogfile.appenderRef.agentStatsTrackingLogfile.ref = agentStatsTrackingLogfile
+
+logger.auditingEventsLogfile.name = auditingEventsTracking
+logger.auditingEventsLogfile.level = INFO
+logger.auditingEventsLogfile.additivity = false
+logger.auditingEventsLogfile.appenderRef.auditingEventsLogfile.ref = auditingEventsLogfile
+
+logger.securityAuditEventsLogfile.name = securityAuditEventsTracking
+logger.securityAuditEventsLogfile.level = INFO
+logger.securityAuditEventsLogfile.additivity = false
+logger.securityAuditEventsLogfile.appenderRef.securityAuditEventsLogfile.ref = securityAuditEventsLogfile
+
+logger.healthCheckerLogFile.name = util.applicationHealthChecker
+logger.healthCheckerLogFile.level = DEBUG
+logger.healthCheckerLogFile.additivity = false
+logger.healthCheckerLogFile.appenderRef.healthCheckerLogFile.ref = healthCheckerLogFile
+
+logger.diagnosticEventsLogfile.name = diagnosticEventLogger
+logger.diagnosticEventsLogfile.level = INFO
+logger.diagnosticEventsLogfile.additivity = false
+logger.diagnosticEventsLogfile.appenderRef.diagnosticEventsLogfile.ref = diagnosticEventsLogfile
+
+logger.cacheLogfile.name = com.tfsc.ilabs.core.cache2
+logger.cacheLogfile.level = DEBUG
+logger.cacheLogfile.additivity = false
+logger.cacheLogfile.appenderRef.cacheLogfile.ref = cacheLogfile
+
+logger.monitoringEventsLogfile.name = com.tfsc.ilabs.core.monitoring
+logger.monitoringEventsLogfile.level = INFO
+logger.monitoringEventsLogfile.additivity = false
+logger.monitoringEventsLogfile.appenderRef.monitoringEventsLogfile.ref = monitoringEventsLogfile
+
+logger.businessmonitoringEventsLogfile.name = com.tfsc.ilabs.nemo.businessmonitoring
+logger.businessmonitoringEventsLogfile.level = DEBUG
+logger.businessmonitoringEventsLogfile.additivity = false
+logger.businessmonitoringEventsLogfile.appenderRef.businessmonitoringEventsLogfile.ref = businessmonitoringEventsLogfile
+
+logger.cscLogfile.name = com.tfsc.ilabs.core.csc.server
+logger.cscLogfile.level = INFO
+logger.cscLogfile.additivity = false
+logger.cscLogfile.appenderRef.cscLogfile.ref = cscLogfile
+
+logger.caEventLogFile.name = caEventLogs
+logger.caEventLogFile.level = INFO
+logger.caEventLogFile.additivity = false
+logger.caEventLogFile.appenderRef.caEventLogFile.ref = caEventLogFile
+
+logger.interactionStateEventsLogFile.name = com.tfsc.ilabs.assist.events.InteractionStateEvent_queue
+logger.interactionStateEventsLogFile.level = INFO
+logger.interactionStateEventsLogFile.additivity = false
+logger.interactionStateEventsLogFile.appenderRef.interactionStateEventsLogFile.ref = interactionStateEventsLogFile
+
+logger.interactionContextEventsLogFile.name = com.tfsc.ilabs.assist.events.InteractionContextEvent_queue
+logger.interactionContextEventsLogFile.level = INFO
+logger.interactionContextEventsLogFile.additivity = false
+logger.interactionContextEventsLogFile.appenderRef.interactionContextEventsLogFile.ref = interactionContextEventsLogFile
+
+logger.interactionEntityLogFile.name = com.tfsc.ilabs.assist.entity.log
+logger.interactionEntityLogFile.level = INFO
+logger.interactionEntityLogFile.additivity = false
+logger.interactionEntityLogFile.appenderRef.interactionEntityLogFile.ref = interactionEntityLogFile
+
+logger.chronosHealthCheckerLogFile.name = chronos.applicationHealthChecker
+logger.chronosHealthCheckerLogFile.level = INFO
+logger.chronosHealthCheckerLogFile.additivity = false
+logger.chronosHealthCheckerLogFile.appenderRef.chronosHealthCheckerLogFile.ref = chronosHealthCheckerLogFile
+
+logger.jgroups.name = org.jgroups
+logger.jgroups.level = WARN
+logger.jgroups.additivity = false
+logger.jgroups.appenderRef.jgroups.ref = jgroups
+
+logger.hibernate.name = org.hibernate
+logger.hibernate.level = ERROR
+logger.hibernate.additivity = false
+logger.hibernate.appenderRef.hibernate.ref = hibernate
+
+logger.eclipse.name = org.eclipse.jetty
+logger.eclipse.level = ERROR
+logger.eclipse.additivity = false
+logger.eclipse.appenderRef.eclipse.ref = eclipse
+
+rootLogger.level = INFO
+rootLogger.appenderRefs = stdout,logfile,errorLogfile
+rootLogger.appenderRef.stdout.ref = STDOUT
+rootLogger.appenderRef.stdout.level = INFO
+rootLogger.appenderRef.logfile.ref = logfile
+rootLogger.appenderRef.errorLogfile.ref = errorLogfile
+rootLogger.appenderRef.errorLogfile.level = WARN

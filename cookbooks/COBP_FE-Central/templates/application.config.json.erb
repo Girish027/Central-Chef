@@ -1,0 +1,16 @@
+{
+  "oktaSample": {
+    "oidc": {
+      "oktaUrl": "<%= @cobpOktaUrl %>",
+      "issuer": "<%= @cobpOktaIssuer %>",
+      "clientId": "<%= @cobpOktaClientId %>",
+      "redirectUri": "<%= @cobpOktaLoginRedirectUri %>",
+      "scope": "<%= @cobpOktaScopes %>"
+    }
+  }
+   ,
+  "components": {
+    "selectAll": <%= node['COBP_FE-Central']['COMPONENT_SELECT_ALL'] %>
+   },
+  "selfServeURL": "<%= node['COBP_FE-Central']['SELF-SERVE_URL'] %>"
+}

@@ -1,0 +1,13 @@
+{
+  "name": "stable-centralsvcs01.app.shared.int.sv2.247-inc.net",
+  "chef_environment": "CENTRAL-STABLE",
+  "run_list": [
+    "recipe[247infrastructure]"
+   
+  ],
+  "normal": {
+    "tags": [
+
+    ]
+  }
+}

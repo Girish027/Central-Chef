@@ -1,0 +1,10 @@
+{
+  "name": "auth02.central-app.staging.sv1.247-inc.net",
+  "chef_environment": "Ajuba-Stage-SV1",
+  "run_list": [
+  ],
+  "normal": {
+    "tags": [
+    ]
+  }
+}

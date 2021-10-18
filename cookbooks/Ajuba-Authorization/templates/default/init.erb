@@ -1,0 +1,84 @@
+#!/bin/sh
+dir="<%= @appDir %>/build"
+user="tellme"
+cmd="su - $user -c $dir/OHAuthLauncher"
+
+
+name=`basename $0`
+pid_file="/var/run/tellme_authorization.pid"
+stdout_log="<%= @logPath %>/$name.log"
+stderr_log="<%= @logPath %>/$name.err"
+
+
+get_pid() {
+    cat "$pid_file"
+}
+
+is_running() {
+    [ -f "$pid_file" ] && ps `get_pid` > /dev/null 2>&1
+}
+
+start_process() {
+        /sbin/sysctl -w net.core.rmem_max=16777216
+		/sbin/sysctl -w net.core.wmem_max=16777216
+		/sbin/sysctl -w net.ipv4.tcp_rmem="4096 87380 16777216"
+		/sbin/sysctl -w net.ipv4.tcp_wmem="4096 16384 16777216"
+
+		/sbin/sysctl -w net.core.somaxconn=2048
+
+ 		/sbin/sysctl -w net.core.netdev_max_backlog=16384
+		/sbin/sysctl -w net.ipv4.tcp_max_syn_backlog=8192
+		/sbin/sysctl -w net.ipv4.tcp_syncookies=1
+
+		ulimit -n 4096      
+        echo "Starting $name"
+        $cmd > "$stdout_log" 2> "$stderr_log" & echo $! > "$pid_file"
+}
+
+stop_process() {
+        echo "Stopping $name"
+       	kill -9 `ps aux | grep OHAuthLauncher.ini | grep -v grep | awk '{print $2}'`
+        rm "$pid_file"
+}
+case "$1" in
+    start)
+        if is_running; then
+                echo "Already started Authorization Application!!"
+        else
+                start_process
+        fi
+        ;;
+    stop)
+        if is_running; then
+                run_gatherinfo
+                stop_process
+        else
+                echo "Authorization Application not Running";
+        fi
+        ;;
+    restart)
+        if is_running; then
+                stop_process
+                start_process
+        else
+                start_process
+        fi
+        ;;
+     status)
+        if is_running; then
+                echo "Running"
+        else
+                echo "Stopped"
+                exit 1
+        fi
+        ;;
+     link)
+     ln -s /etc/init.d/tellme_authorization /etc/rc3.d/S14tellme_authorization
+	 ln -s /etc/init.d/tellme_authorization /etc/rc2.d/K99tellme_authorization
+    	;;
+    *)
+        echo "Usage: $0 {start|stop|restart|status|link}"
+        exit 1
+        ;;
+esac
+exit 0

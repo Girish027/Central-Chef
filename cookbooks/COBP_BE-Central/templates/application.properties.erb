@@ -1,0 +1,79 @@
+spring.datasource.url= <%= @cobpMysqlHost %>
+spring.datasource.username=<%= @cobpMysqlUser %>
+spring.datasource.password=<%= @cobpMysqlPassword %>
+
+spring.jpa.database-platform=org.hibernate.dialect.MySQL5InnoDBDialect
+spring.jpa.show-sql=false
+spring.jpa.hibernate.ddl-auto=update
+
+spring.application.name=cobp-service
+spring.data.rest.basePath=${spring.application.name}
+
+spring.jackson.serialization.write_dates_as_timestamps=false
+
+server.servlet.contextPath=/${spring.application.name}
+
+logging.config= <%= @cobpLogbackURL %>
+
+sso.disable=<%= @cobpSsoDisable %>
+sso.baseUrl=<%= @cobpSsoBaseUrl %>
+
+cc = <%= node['COBP_BE-Central']['COBP-APP-CC'] %>
+slaBreachEscalation = <%= node['COBP_BE-Central']['COBP-APP-SLA_BREACH_FLAG'] %>
+toEmail=<%= @cobptoEmail %>
+fromEmail=<%= @cobpfromEmail %>
+subject=<%= @cobpSubject %>
+smtpServer=<%= @cobpsmtpServer %>
+smtpPort=<%= @cobpsmtpPort %>
+
+toEmailValidationProvisionFailed=<%= @cobptoEmailValidationProvisionFailed %>
+fromEmailValidationProvisionFailed=<%= @cobpfromEmailValidationProvisionFailed %>
+subjectValidationProvisionFailed=<%= @cobpSubjectValidationProvisionFailed %>
+
+cwp.url=<%= @cobpCwpUrl %>
+
+#Specify the authentication mechanism which needs to used by backend application. Eg. okta, sso
+enable.authentication=<%= @cobpEnableAuthType %>
+
+#If the authentication is okta, then need to provide valid values for the below properties
+okta.baseUrl=<%= @cobpBaseUrl %>
+okta.authorization.service.id=<%= @cobpOktaAuthorizationServiceId %>
+okta.client.id=<%= @cobpClientId %>
+okta.client.secret=<%= @cobpClientSecret %>
+okta.connection.timeout=<%= @cobpOktaConnectionTimeout %>
+okta.connection.mulitply=<%= @cobpOktaConnectionMultiply %>
+
+okta.apiKey=<%= node['COBP_BE-Central']['COBP-APP-OKTA-API_KEY'] %>
+
+config.cob.proxy=<%= @cobpProxyEnable %>
+config.proxy.host=<%= @cobpProxyHost %>
+config.proxy.port=<%= @cobpProxyPort %>
+config.proxy.protocol=<%= @cobpProxyProtocol %>
+
+# property to configure messaging component names. It is a comma separated list of component names.
+messaging.component.names=<%= @cobpMessagingComponentNames %>
+
+# allowed.origins is used to set allowed origins related to CORS. Only request which come from the domains listed in
+# this property are accepted. This is a comma separated list of origin domains. Make sure to include protocol. You need
+# to have port as well if it is not default port(80 or 443).
+# Examples:
+#       http://staging.client-prov.247-inc.net,http://client-prov.web.stg.lb-pub.sv1.247-inc.net
+#       http://localhost:8080
+#       *
+allowed.origins=<%= @cobpAllowedOrigins %>
+
+# host/VIP name of OHS service. Do not include http
+ohsDomainName=<%= @ohsDomainName %>
+# OHS service port on host given by ohsDomainName property. This is optional. Defaults to 80.
+ohsPort=<%= @ohsPort%>
+
+spring.jpa.properties.hibernate.id.new_generator_mappings=false
+
+maxPayloadSize=<%= @maxPayloadSize%>
+
+# core.component.selection.enabled when true, allows provisioning of a subset of core components in a product.
+core.component.selection.enabled=<%= @coreComponentSelectionEnabled%>
+spring.cache.jcache.config=classpath:ehcache.xml
+#For health check Endpoints
+management.endpoints.web.exposure.include=health
+management.endpoints.web.base-path=/

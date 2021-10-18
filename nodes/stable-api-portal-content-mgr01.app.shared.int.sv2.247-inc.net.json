@@ -1,0 +1,12 @@
+{
+  "name": "stable-api-portal-content-mgr01.app.shared.int.sv2.247-inc.net",
+  "chef_environment": "CENTRAL-DEV",
+  "run_list": [
+    "recipe[247infrastructure]",
+    "recipe[DevPortal-Solr-Central]"
+  ],
+  "normal": {
+    "tags": [
+    ]
+  }
+}

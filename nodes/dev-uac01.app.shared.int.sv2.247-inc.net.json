@@ -1,0 +1,13 @@
+{
+  "name": "dev-uac01.app.shared.int.sv2.247-inc.net",
+  "chef_environment": "OHS-Sandbox",
+  "run_list": [
+  	 "recipe[247infrastructure]",
+     "recipe[Ajuba-Org-Hierarchy-Service]"
+  ],
+  "normal": {
+    "tags": [
+
+    ]
+  }
+}

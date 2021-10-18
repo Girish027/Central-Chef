@@ -1,0 +1,13 @@
+{
+  "name": "portal01.v2.apigee.sv2.247-inc.net",
+  "chef_environment": "CENTRAL-DEV",
+  "run_list": [
+    "recipe[247infrastructure]",
+    "recipe[DevPortal-Solr-Central]"
+  ],
+  "normal": {
+    "tags": [
+
+    ]
+  }
+}

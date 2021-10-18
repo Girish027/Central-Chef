@@ -1,0 +1,28 @@
+logging.log4j.config.reload=true
+logging.log4j.resetHierarchy=false
+logging.log4j.rolloverDuringStartup=true
+logging.log4j.rolloverDuringReload=false
+
+log4j.debug=false
+log4j.rootLogger=<%= @loggerRootLevel%>
+
+#All 3rd party s/w
+log4j.logger.org.jgroups=<%= @loggerJgroupsLevel%>
+log4j.logger.org.eclipse.jetty=<%= @loggerJettyLevel%>
+log4j.logger.org.hibernate=<%= @loggerHibernateLevel%>
+
+
+# Appender Configuration
+
+# Default log file.
+log4j.appender.logfile=org.apache.log4j.DailyRollingFileAppender
+log4j.appender.logfile.File=<%= @logfile%>
+log4j.appender.logfile.DatePattern='.'<%= @loggerDatePattern%>
+log4j.appender.logfile.layout=org.apache.log4j.PatternLayout
+log4j.appender.logfile.layout.ConversionPattern=%m%n
+log4j.appender.logfile.BufferedIO=true
+log4j.appender.logfile.BufferSize=10000
+
+log4j.appender.stdout=org.apache.log4j.ConsoleAppender
+log4j.appender.stdout.layout=org.apache.log4j.PatternLayout
+log4j.appender.stdout.layout.ConversionPattern=%m%n

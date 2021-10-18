@@ -1,0 +1,81 @@
+#!/bin/sh
+HOURS_AGO=$1
+WARN_THRESHOLD=$2
+CRITICAL_THRESHOLD=$3
+SERVICE_KEY="$4"
+OPERAND=$5
+MESSAGE=$6
+BASE_FILE_NAME=logfile.log
+TYPE=sum
+
+if [ "$HOURS_AGO" -lt "0" ] ; then
+        HOURS_AGO=0
+fi
+
+NOW=`date --date="$HOURS_AGO hours ago" +%Y-%m-%d-%H`
+
+_OK=0
+_WARN=1
+_CRITICAL=2
+
+if ! [ ! -n "$7" ] ; then
+        BASE_FILE_NAME=$7
+fi
+
+if ! [ ! -n "$8" ] ; then
+        TYPE=$8
+fi
+
+if [ "$HOURS_AGO" -eq "0" ] ; then
+        FILE_NAME=$BASE_FILE_NAME
+else
+        FILE_NAME=$BASE_FILE_NAME.$NOW
+fi
+
+if [ ! -f $FILE_NAME ] ; then
+        echo "UNKNOWN PATH: $FILE_NAME not Found"
+        echo "__OUTPUT__"
+        echo "Check if Assist Application is running on the Server"
+        exit $_WARN
+fi
+MIN_INT=0
+count1=`grep -c "$SERVICE_KEY" $FILE_NAME`
+
+if ! [[ "$count1" =~ ^[0-9]*[.[0-9]*]?$ ]] || [ ! -n "$count1" ] ; then
+   count1=0
+fi
+
+count1=${count1/\.*}
+
+if [ "$OPERAND" == "gt" ] ; then
+        if [ "$count1" -gt "$CRITICAL_THRESHOLD" ] ; then
+                echo "CRITICAL: $MESSAGE has very high value"
+                echo "__OUTPUT__"
+                echo "$MESSAGE with value $count1"
+                exit $_CRITICAL
+
+        elif [ "$count1" -gt "$WARN_THRESHOLD" ] ; then
+                echo "WARN: $MESSAGE has high value"
+                echo "__OUTPUT__"
+                echo "$MESSAGE with value $count1"
+                exit $_WARN
+        fi
+        echo "OK"
+        exit $_OK
+elif [ "$OPERAND" == "lt" ] ; then
+        if [ "$count1" -lt "$CRITICAL_THRESHOLD" ] ; then
+                echo "CRITICAL: $MESSAGE has very low value"
+                echo "__OUTPUT__"
+                echo "$MESSAGE with value $count1"
+                exit $_CRITICAL
+        elif [ "$count1" -lt "$WARN_THRESHOLD" ] ; then
+                echo "WARN: $MESSAGE has low value"
+                echo "__OUTPUT__"
+                echo "$MESSAGE with value $count1"
+                exit $_WARN
+        fi
+        echo "OK"
+        exit $_OK
+fi
+echo "OK"
+exit $_OK

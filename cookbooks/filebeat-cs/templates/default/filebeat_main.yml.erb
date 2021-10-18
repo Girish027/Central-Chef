@@ -1,0 +1,30 @@
+###################### Filebeat Default Configuration #########################
+
+#================================ General =====================================
+filebeat:
+  config:
+    prospectors:
+      reload.enabled: true
+      reload.period: 300s
+      path: /opt/filebeat/prospector-conf/*.yml 
+        
+#================================ Outputs =====================================
+# Configure what outputs to use when sending the data collected by the beat.
+
+#----------------------------- Logstash output --------------------------------
+output.logstash:
+
+#================================ Logging =====================================
+logging:
+##################### SAMPLE BELOW ############################################ 
+# The hyphens below is to ensure the cookbook logic doesn't break
+# l-o-g-g-i-n-g:
+#   to_files: true
+#   files:
+#     path: /var/tellme/log/filebeat/
+#     name: filebeat.log
+#     rotateeverybytes: 10485760
+#     keepfiles: 7
+#     level: info
+# Sets log level. The default log level is info.
+# Available log levels are: critical, error, warning, info, debug

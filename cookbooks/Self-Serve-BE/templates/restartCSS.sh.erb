@@ -1,0 +1,3 @@
+#!/bin/bash
+css_pid=`ps aux | grep css | grep -v grep | awk '{print $2}'`;if [ "$css_pid" != "" ]; then `kill -9 $css_pid`; fi
+nohup java -jar /var/tellme/css/build/css.jar --spring.config.location=/var/tellme/css/conf/application.properties > /var/tellme/css/logs/console.log 2>&1 &

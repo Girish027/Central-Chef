@@ -1,0 +1,14 @@
+{
+  "name": "client-prov01.web.shared.stg.sv1.247-inc.net",
+  "chef_environment": "CENTRAL-SV1-STAGE",
+  "run_list": [
+    "recipe[247infrastructure]",
+    "recipe[COBP_FE-Central::cobp-fe-filebeat]",
+    "recipe[COBP_FE-Central]"
+  ],
+  "normal": {
+    "tags": [
+
+    ]
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "name": "assistqacore3",
+  "description": "",
+  "cookbook_versions": {
+  },
+  "json_class": "Chef::Environment",
+  "chef_type": "environment",
+  "default_attributes": {
+  },
+  "force_override": {
+    "filebeat":{
+      "version":"filebeat-5.6.5-1.x86_64 --nogpgcheck",
+      "logstash":{
+         "host":"stable-logstash.lb-priv.sv2.247-inc.net:5120"
+      }
+   }
+  }
+}

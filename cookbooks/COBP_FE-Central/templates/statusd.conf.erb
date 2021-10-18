@@ -1,0 +1,22 @@
+location = <%= node['COBP_FE-Central']['location'] %>  
+webserver = <%= node['COBP_FE-Central']['webserver'] %>
+probeserver = <%= node['COBP_FE-Central']['probeserver'] %>
+release = <%= node['COBP_FE-Central']['release'] %>
+mail_host = <%= node['COBP_FE-Central']['mail_host'] %>
+
+statusd.plugin.check_cpu = [check_cpu][-w 85,85,85,15 -c 95,95,95,5][2][2][default_check][$HOSTADDRESS$][NONE]
+statusd.plugin.check_dirs = [check_dir_exists][/var/tellme/log,/var/tellme/cores,/var/tmp,/root,/tmp,/home][15][15][default_check][$HOSTADDRESS$][NONE]
+statusd.plugin.check_dns = [check_dns][$HOSTADDRESS$ -H $WEBSERVER$][1][1][default_check][$HOSTADDRESS$][NONE]
+statusd.plugin.check_inodes = [check_ufs][$HOSTADDRESS$ -dfi][5][5][default_check][$HOSTADDRESS$][NONE]
+statusd.plugin.check_load = [check_load][-w 15,10,5 -c 20,15,10][1][1][default_check][$HOSTADDRESS$][NONE]
+statusd.plugin.check_ntpclient = [check_ntpclient][<%= node['COBP_FE-Central']['ntp_server'] %>][5][5][default_check][$HOSTADDRESS$][NONE]
+statusd.plugin.check_outofservice = [check_outofservice][$HOSTADDRESS$][1][1][default_check][$HOSTADDRESS$][NONE]
+statusd.plugin.check_process_keyme = [check_process][$HOSTADDRESS$ keyme][1][1][default_check][$HOSTADDRESS$][NONE]
+statusd.plugin.check_release = [check_release][$HOSTADDRESS$][5][5][default_check][$HOSTADDRESS$][NONE]
+statusd.plugin.check_smtp = [check_smtp][$HOSTADDRESS$][1][1][default_check][$HOSTADDRESS$][NONE]
+statusd.plugin.check_ssh = [check_ssh][$HOSTADDRESS$][1][1][default_check][$HOSTADDRESS$][NONE]
+statusd.plugin.check_system_memory = [check_system_memory_linux][][5][5][default_check][$HOSTADDRESS$][NONE]
+statusd.plugin.check_ufs = [check_ufs][$HOSTADDRESS$ -s 85,90 -dfk][5][5][default_check][$HOSTADDRESS$][NONE]
+statusd.plugin.check_process_node = [check_process][$HOSTADDRESS$ <%= node['COBP_FE-Central']['CHECK-PROCESS-NODE'] %> ][1][1][default_check][$HOSTADDRESS$][NONE]
+statusd.plugin.check_process_nginx = [check_process][$HOSTADDRESS$ <%= node['COBP_FE-Central']['CHECK-PROCESS-NGINX'] %> ][1][1][default_check][$HOSTADDRESS$][NONE]
+statusd.plugin.check_process_filebeat = [check_process][$HOSTADDRESS$ filebeat=2,2][5][5][default_check][$HOSTADDRESS$]

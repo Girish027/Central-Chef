@@ -1,0 +1,12 @@
+#!/bin/bash
+ps -ef | grep "ajuba-authorization" | grep -v "grep"
+returnCode=$?
+if [ ${returnCode} -eq 0 ]
+then
+        echo "Authorization process is running"
+        exitCode=${returnCode}
+else
+        echo "Authorization process  is stopped"
+        exitCode=2
+fi
+exit ${exitCode}

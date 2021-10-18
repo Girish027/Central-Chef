@@ -1,0 +1,96 @@
+import org.apache.log4j.DailyRollingFileAppender
+import org.apache.log4j.EnhancedPatternLayout
+dataSource {
+                driverClassName = "com.mysql.jdbc.Driver"
+                url = "jdbc:mysql://<%= @ohsMysqlUrl %>"
+                username = "<%= @ohsMysqlUser %>"
+                password = "<%= @ohsMysqlPassword %>"
+                properties {
+                    maxActive = 50
+                    maxIdle = 25
+                    minIdle = 1
+                    initialSize = 1
+
+                    numTestsPerEvictionRun = 3
+                    maxWait = 10000
+
+                    testOnBorrow = true
+                    testWhileIdle = true
+                    testOnReturn = true
+
+                    validationQuery = "select now()"
+
+                    minEvictableIdleTimeMillis = 300000
+                    timeBetweenEvictionRunsMillis = 300000
+                }
+            }
+            dataSource_read {
+                driverClassName = "com.mysql.jdbc.Driver"
+                url = "jdbc:mysql://<%= @ohsMysqlUrlRead %>"
+                username = "<%= @ohsMysqlUserRead %>"
+                password = "<%= @ohsMysqlPasswordRead %>"
+                properties {
+                    maxActive = 50
+                    maxIdle = 25
+                    minIdle = 1
+                    initialSize = 1
+
+                    numTestsPerEvictionRun = 3
+                    maxWait = 10000
+
+                    testOnBorrow = true
+                    testWhileIdle = true
+                    testOnReturn = true
+
+                    validationQuery = "select now()"
+
+                    minEvictableIdleTimeMillis = 300000
+                    timeBetweenEvictionRunsMillis = 300000
+                }
+            }
+       // }
+
+   log4j = {
+            appenders {
+                console name:'stdout', layout:new EnhancedPatternLayout(conversionPattern: '{"debugtimestamp":"%d{ISO8601}{GMT}","debug_level":"%-5p","debug_class":"%c","debug_thread":"%t","debug_line":"%L","debug_uuid":"%X{UUID}","debug_message":"%m"}%n')
+                appender new DailyRollingFileAppender(
+                        name: "rollingFileGrailsApp",
+                        file: "<%= @ohsLogPath %>/ohsLogFile.log",
+                        datePattern: "'.'yyyy-MM-dd-HH",
+                        layout: new EnhancedPatternLayout(conversionPattern: '{"debugtimestamp":"%d{ISO8601}{GMT}","debug_level":"%-5p","debug_class":"%c","debug_thread":"%t","debug_line":"%L","debug_uuid":"%X{UUID}","debug_message":"%m"}%n')
+                )
+                appender new DailyRollingFileAppender(
+                        name: "rollingAuditLogs",
+                        file: "<%= @ohsLogPath %>/ohsAuditLogFile.log",
+                        datePattern: "'.'yyyy-MM-dd-HH",
+                        layout: new EnhancedPatternLayout(conversionPattern: '{"debugtimestamp":"%d{ISO8601}{GMT}","debug_level":"%-5p","debug_class":"%c","debug_thread":"%t","debug_line":"%L","debug_uuid":"%X{UUID}","debug_message":"%m"}%n')
+                )
+            }
+            root {
+                info 'stdout', 'rollingFileGrailsApp', 'stderr'
+                additivity = false
+            }
+            info rollingAuditLogs: 'rollingAuditLogs', additivity: false
+            info rollingFileGrailsApp: "grails.app","com.tfsc.ilabs"
+            error  'org.codehaus.groovy.grails.web.servlet',        // controllers
+                    'org.codehaus.groovy.grails.web.pages',          // GSP
+                    'org.codehaus.groovy.grails.web.sitemesh',       // layouts
+                    'org.codehaus.groovy.grails.web.mapping.filter', // URL mapping
+                    'org.codehaus.groovy.grails.web.mapping',        // URL mapping
+                    'org.codehaus.groovy.grails.commons',            // core / classloading
+                    'org.codehaus.groovy.grails.plugins',            // plugins
+                    'org.codehaus.groovy.grails.orm.hibernate',      // hibernate integration
+                    'org.springframework',
+                    'org.hibernate',
+                    'net.sf.ehcache.hibernate'
+
+        }
+
+versioning.diff.cache.size =<%= @versioningCacheSize %>
+versioning.diff.max.batch.size =<%= @versioningBatchSize %>
+grails.serverURL = "<%= @ohsServerName %>"
+onboard.role.ajuba.admin.default.permissions =<%= @adjubaAdminPermissions %>
+
+onboard.role.ajuba.reports.default.permissions =<%= @ajubaInsightsPermissions %>
+
+onboard.licence.default.name ="<%= @ajubaDefaultLicenceName %>"

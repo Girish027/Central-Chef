@@ -1,0 +1,27 @@
+location = <%= node['Self-Serve-BE']['location'] %>  
+webserver = <%= node['Self-Serve-BE']['webserver'] %>
+probeserver = <%= node['Self-Serve-BE']['probeserver'] %>
+release = <%= node['Self-Serve-BE']['release'] %>
+mail_host = <%= node['Self-Serve-BE']['mail_host'] %>
+
+statusd.plugin.check_cpu = [check_cpu][-w 85,85,85,15 -c 95,95,95,5][2][2][default_check][$HOSTADDRESS$][NONE]
+statusd.plugin.check_dirs = [check_dir_exists][/var/tellme/log,/var/tellme/cores,/var/tmp,/root,/tmp,/home][15][15][default_check][$HOSTADDRESS$][NONE]
+statusd.plugin.check_dns = [check_dns][$HOSTADDRESS$ -H $WEBSERVER$][1][1][default_check][$HOSTADDRESS$][NONE]
+statusd.plugin.check_inodes = [check_ufs][$HOSTADDRESS$ -dfi][5][5][default_check][$HOSTADDRESS$][NONE]
+statusd.plugin.check_load = [check_load][-w 15,10,5 -c 20,15,10][1][1][default_check][$HOSTADDRESS$][NONE]
+statusd.plugin.check_outofservice = [check_outofservice][$HOSTADDRESS$][1][1][default_check][$HOSTADDRESS$][NONE]
+statusd.plugin.check_process_keyme = [check_process][$HOSTADDRESS$ keyme][1][1][default_check][$HOSTADDRESS$][NONE]
+statusd.plugin.check_release = [check_release][$HOSTADDRESS$][5][5][default_check][$HOSTADDRESS$][NONE]
+statusd.plugin.check_smtp = [check_smtp][$HOSTADDRESS$][1][1][default_check][$HOSTADDRESS$][NONE]
+statusd.plugin.check_ssh = [check_ssh][$HOSTADDRESS$][1][1][default_check][$HOSTADDRESS$][NONE]
+statusd.plugin.check_system_memory = [check_system_memory_linux][][5][5][default_check][$HOSTADDRESS$][NONE]
+statusd.plugin.check_ufs = [check_ufs][$HOSTADDRESS$ -s 85,90 -dfk][5][5][default_check][$HOSTADDRESS$][NONE]
+statusd.plugin.check_process_css = [check_process_css][][5][5][default_check][$HOSTADDRESS$]
+statusd.plugin.check_process_filebeat = [check_process][$HOSTADDRESS$ filebeat=2,2][5][5][default_check][$HOSTADDRESS$]
+statusd.plugin.check_ntpclient = [check_ntpclient][<%= node['Self-Serve-BE']['ntp_server'] %>][5][5][default_check][$HOSTADDRESS$][NONE]
+statusd.plugin.check_assist_selfserve_log = [check_tail_log][-l <%= node['Self-Serve-BE']['service_log'] %> -M -c "<%= node['Self-Serve-BE']['service_log_critical_pattern'] %>" -w "<%= node['Self-Serve-BE']['service_log_warn_pattern'] %>" -d 9][1][1][persistent_check][$HOSTADDRESS$][MED]
+statusd.plugin.check_connection_reset = [check_css_log_expression][0 1 1 "java.net.SocketException: Connection reset" gt ConnectionReset <%= node['Self-Serve-BE']['service_log'] %> sum][1][1][default_check][$HOSTADDRESS$][NONE]'
+statusd.plugin.check_LockAcquisitionError = [check_css_log_expression][0 1 1 "org.hibernate.exception.LockAcquisitionException" gt LockAcquisitionException <%= node['Self-Serve-BE']['service_log'] %> sum][1][1][default_check][$HOSTADDRESS$][NONE]
+statusd.plugin.check_connection_refused = [check_css_log_expression][0 1 1 "java.net.ConnectException: Connection refused" gt ConnectionRefused <%= node['Self-Serve-BE']['service_log'] %> sum][1][1][default_check][$HOSTADDRESS$][NONE]
+statusd.plugin.check_jdbc_exception = [check_css_log_expression][0 1 1 "com.mysql.jdbc.exception: Connection refused" gt JDBCException <%= node['Self-Serve-BE']['service_log'] %> sum][1][1][default_check][$HOSTADDRESS$][NONE]
+statusd.plugin.check_http_process = [check_http_css][][5][5][default_check][$HOSTADDRESS$]

@@ -1,0 +1,11 @@
+{
+  "name": "cob-central01.app.shared.int.sv2.247-inc.net",
+  "chef_environment": "CENTRAL-DEV",
+  "run_list": [
+  	"recipe[Self-Serve-BE]"
+  ],
+  "normal": {
+    "tags": [
+    ]
+  }
+}
